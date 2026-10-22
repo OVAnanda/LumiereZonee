@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumiereZone — Anime Discovery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <span class="logo">LumiereZone</span>
+  <div class="navlinks">
+    <div class="dropdown" id="genre-dropdown">
+      <a class="dropdown-toggle" onclick="toggleGenreMenu(event)">Genre ▾</a>
+      <div class="dropdown-menu" id="genre-menu"></div>
+    </div>
+    <a onclick="scrollToId('seasonal')">Popular</a>
+    <a onclick="scrollToId('watchlist')">My List</a>
+  </div>
+  <form id="search-form">
+    <input id="search-input" type="text" placeholder="Search anime titles…" autocomplete="off">
+  </form>
+  <span class="watchlist-count" id="wl-count">0 tracked</span>
+</nav>
+
+<div id="hero"><div class="hero-inner"><div class="skel" style="height:200px;width:100%"></div></div></div>
+
+<main>
+  <section id="results-section" style="display:none">
+    <div class="section-head"><h2 id="results-title">Search Results</h2>
+      <span class="section-sub" onclick="clearSearch()" style="cursor:pointer;text-decoration:underline">clear</span></div>
+    <div class="grid" id="results-grid"></div>
+  </section>
+
+  <section id="seasonal">
+    <div class="section-head">
+      <h2>Popular Right Now</h2>
+      <span class="section-sub">via the Kitsu API</span>
+    </div>
+    <div class="chips" id="genre-chips"></div>
+    <div class="grid" id="seasonal-grid">
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    </div>
+  </section>
+
+  <section id="watchlist">
+    <div class="section-head"><h2>My List</h2><span class="section-sub" id="wl-sub"></span></div>
+    <div class="grid" id="watchlist-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr));"></div>
+  </section>
+</main>
+
+<footer>LumiereZone — anime discovery &amp; tracker · data from the Kitsu API</footer>
+
+<div id="trailer-backdrop" onclick="if(event.target===this)closeTrailer()">
+  <div id="trailer-box">
+    <button id="trailer-close" onclick="closeTrailer()">✕</button>
+    <div id="trailer-frame-wrap"><iframe id="trailer-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+  </div>
+</div>
+
+<div id="modal-backdrop" onclick="if(event.target===this)closeModal()">
+  <div id="modal">
+    <button id="modal-close" onclick="closeModal()">✕</button>
+    <img id="modal-img" src="" alt="">
+    <div id="modal-body">
+      <h2 id="modal-title"></h2>
+      <div class="modal-jp" id="modal-jp"></div>
+      <div class="hero-tags" id="modal-tags"></div>
+      <div class="card-meta" id="modal-meta"></div>
+      <div id="modal-synopsis"></div>
+      <div class="modal-actions" id="modal-actions"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
